@@ -1,33 +1,40 @@
 {
-  "name": "vibeclean",
+  "name": "vibescore",
   "version": "0.1.0",
   "description": "Lint for AI slop. Audits a repo and prints a Vibe Score from 0 to 100.",
   "keywords": [
     "cli",
     "lint",
+    "linter",
     "audit",
     "code-quality",
+    "code-review",
     "ai",
-    "vibe",
+    "ai-code",
+    "vibe-coding",
+    "vibe-score",
     "repo-health",
-    "vibeclean"
+    "developer-tools",
+    "technical-debt",
+    "typescript",
+    "nodejs"
   ],
   "license": "MIT",
-  "author": "vibeclean contributors",
+  "author": "marco-trotta1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/vibeclean.git"
+    "url": "git+https://github.com/marco-trotta1/vibescore.git"
   },
   "bugs": {
-    "url": "https://github.com/your-org/vibeclean/issues"
+    "url": "https://github.com/marco-trotta1/vibescore/issues"
   },
-  "homepage": "https://github.com/your-org/vibeclean#readme",
+  "homepage": "https://github.com/marco-trotta1/vibescore#readme",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "vibeclean": "dist/cli.js"
+    "vibescore": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -37,6 +44,9 @@
   "engines": {
     "node": ">=18"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsx src/cli.ts",
@@ -44,7 +54,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && npm test"
   },
   "dependencies": {
     "chalk": "^5.3.0",

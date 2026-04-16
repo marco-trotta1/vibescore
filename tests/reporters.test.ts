@@ -78,7 +78,7 @@ describe('renderHuman', () => {
   it('includes score, band, and section headers', () => {
     const out = renderHuman(makeReport(), { funny: true });
     const stripped = out.replace(/\u001b\[[0-9;]*m/g, '');
-    expect(stripped).toContain('Vibeclean Report');
+    expect(stripped).toContain('Vibescore Report');
     expect(stripped).toContain('63/100');
     expect(stripped).toContain('Neutral');
     expect(stripped).toContain('CRITICAL');

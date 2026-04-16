@@ -23,7 +23,7 @@ const DEFAULT_OPTS: AnalyzeOptions = {
 };
 
 async function tempDir(): Promise<string> {
-  return fs.mkdtemp(path.join(os.tmpdir(), 'vibeclean-check-'));
+  return fs.mkdtemp(path.join(os.tmpdir(), 'vibescore-check-'));
 }
 
 async function write(root: string, rel: string, content: string): Promise<void> {

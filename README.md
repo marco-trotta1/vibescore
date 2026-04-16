@@ -1,27 +1,43 @@
-# vibeclean
+# vibescore
 
-> Lint for AI slop. Audits a repo and prints a **Vibe Score** from 0 to 100.
+[![npm version](https://img.shields.io/npm/v/vibescore.svg?style=flat-square)](https://www.npmjs.com/package/vibescore)
+[![npm downloads](https://img.shields.io/npm/dm/vibescore.svg?style=flat-square)](https://www.npmjs.com/package/vibescore)
+[![CI](https://img.shields.io/github/actions/workflow/status/marco-trotta1/vibescore/ci.yml?branch=main&style=flat-square)](https://github.com/marco-trotta1/vibescore/actions)
+[![license](https://img.shields.io/npm/l/vibescore.svg?style=flat-square)](./LICENSE)
+[![node](https://img.shields.io/node/v/vibescore.svg?style=flat-square)](https://nodejs.org)
 
-`vibeclean` is a zero-config CLI that scans a repository for the things AI-assisted
+> **Lint for AI slop.** Audits a repo and prints a **Vibe Score** from 0 to 100.
+
+`vibescore` is a zero-config CLI that scans a repository for the things AI-assisted
 codebases tend to accumulate: missing `.env.example`, committed secrets, giant files,
 TODO/FIXME drifts, duplicated blocks, placeholder stubs, missing tests, missing CI,
 thin READMEs, unresolved imports.
 
 It's deterministic. No LLMs. Just rules, file scans, and a little bit of judgment.
 
+## Quick start
+
+```bash
+npx vibescore .
 ```
-🧼 Vibeclean Report for ./my-app
+
+That's it. No config file, no setup.
+
+## Example output
+
+```
+🧼 Vibescore Report for ./my-app
 
 Vibe Score: 63/100 (Neutral)
 
 CRITICAL
-- Missing .env.example despite env usage (src/api/server.ts)
-- Potential committed secret (AWS access key id) in src/config.ts
+- Missing .env.example despite env usage  (src/api/server.ts)
+- Potential committed secret (AWS access key id)  (src/config.ts)
 
 WARNINGS
 - File exceeds 600 LOC (712 lines)  (src/routes/handler.ts:712)
 - 17 TODO/FIXME/HACK/TEMP/XXX markers found. Top: src/utils/helpers.ts (9), src/api/server.ts (5), src/lib/parser.ts (3)
-- Duplicate 6-line block found in 3 files (src/a.ts:42, src/b.ts:17)
+- Duplicate 6-line block found in 3 files  (src/a.ts:42, src/b.ts:17)
 
 INFO
 - Possibly unused dependency: lodash  (package.json)
@@ -42,16 +58,16 @@ tends to ship with the same handful of problems:
 - three copies of the same function in different folders
 - no `.env.example` to onboard the next human
 
-`vibeclean` puts a number on it.
+`vibescore` puts a number on it.
 
 ## Install
 
 ```bash
 # one-off
-npx vibeclean .
+npx vibescore .
 
 # as a dev dependency
-npm install --save-dev vibeclean
+npm install --save-dev vibescore
 ```
 
 Requires Node.js 18+.
@@ -59,16 +75,16 @@ Requires Node.js 18+.
 ## Usage
 
 ```bash
-vibeclean            # audit cwd
-vibeclean .          # same
-vibeclean ./my-app   # audit another path
+vibescore            # audit cwd
+vibescore .          # same
+vibescore ./my-app   # audit another path
 
-vibeclean --json .                        # machine-readable output
-vibeclean --strict .                      # harsher scoring + non-zero exit if score < 70
-vibeclean --no-funny .                    # dry verdict, no jokes
-vibeclean --max-file-lines 800 .          # override large-file threshold
-vibeclean --help
-vibeclean --version
+vibescore --json .                        # machine-readable output
+vibescore --strict .                      # harsher scoring + non-zero exit if score < 70
+vibescore --no-funny .                    # dry verdict, no jokes
+vibescore --max-file-lines 800 .          # override large-file threshold
+vibescore --help
+vibescore --version
 ```
 
 ### Flags
@@ -88,7 +104,7 @@ vibeclean --version
 {
   "target": "/abs/path/to/repo",
   "score": 63,
-  "band": "Chaotic Neutral",
+  "band": "Neutral",
   "strict": false,
   "summary": { "critical": 1, "warnings": 3, "info": 2 },
   "issues": [
@@ -135,7 +151,7 @@ Scores start at 100 and subtract per issue. Representative weights:
 
 `--strict` multiplies these by 1.5.
 
-## Checks in v1
+## What it checks
 
 1. **Env example** — detects `process.env` / `import.meta.env` usage and warns if `.env.example` is missing.
 2. **Secrets** — pattern + high-entropy heuristics for AWS, Google, GitHub, Slack, Stripe, OpenAI, Anthropic, JWTs, private keys, and bearer tokens. Skips fixtures and placeholders.
@@ -153,7 +169,7 @@ Scores start at 100 and subtract per issue. Representative weights:
 ## Programmatic API
 
 ```ts
-import { analyze } from 'vibeclean';
+import { analyze } from 'vibescore';
 
 const report = await analyze({
   target: './my-app',
@@ -168,7 +184,7 @@ console.log(report.score, report.band);
 ## Roadmap
 
 - `--fix` suggestions for common issues
-- pluggable checks via `vibeclean.config.ts`
+- pluggable checks via `vibescore.config.ts`
 - per-project ignore rules
 - GitHub Action that comments the score on PRs
 - HTML report mode
@@ -177,9 +193,11 @@ console.log(report.score, report.band);
 
 ## Contributing
 
-Small, focused PRs welcome. Each check lives in [`src/checks/`](src/checks) and is a
-pure function over a `RepoContext`. Add yours, wire it into
-[`src/index.ts`](src/index.ts), and drop a test in [`tests/checks.test.ts`](tests/checks.test.ts).
+Small, focused PRs welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+Each check lives in [`src/checks/`](src/checks) and is a pure function over a
+`RepoContext`. Add yours, wire it into [`src/index.ts`](src/index.ts), and drop
+a test in [`tests/checks.test.ts`](tests/checks.test.ts).
 
 ```bash
 npm install
@@ -190,4 +208,4 @@ npm run build      # emit dist/
 
 ## License
 
-MIT
+MIT — see [LICENSE](./LICENSE).

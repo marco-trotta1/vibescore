@@ -17,7 +17,7 @@ export interface CliFlags {
 export function buildProgram(): Command {
   const program = new Command();
   program
-    .name('vibeclean')
+    .name('vibescore')
     .description('Lint for AI slop. Audits a repo and prints a Vibe Score from 0 to 100.')
     .version(VERSION, '-v, --version', 'Print version')
     .argument('[path]', 'Path to repo to audit', '.')
@@ -81,7 +81,7 @@ function isDirectInvocation(): boolean {
 
 if (isDirectInvocation()) {
   runCli(process.argv.slice(2)).catch((err) => {
-    process.stderr.write(`vibeclean: ${err instanceof Error ? err.message : String(err)}\n`);
+    process.stderr.write(`vibescore: ${err instanceof Error ? err.message : String(err)}\n`);
     process.exit(2);
   });
 }

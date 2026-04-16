@@ -59,7 +59,7 @@ export function renderHuman(report: Report, opts: HumanRenderOptions): string {
     : `./${relTarget}`;
 
   lines.push('');
-  lines.push(chalk.bold(`🧼 Vibeclean Report for ${displayTarget}`));
+  lines.push(chalk.bold(`🧼 Vibescore Report for ${displayTarget}`));
   lines.push('');
   const color = bandColor(report.band);
   lines.push(

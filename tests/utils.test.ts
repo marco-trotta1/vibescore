@@ -40,7 +40,7 @@ describe('shannonEntropy', () => {
 
 describe('buildRepoContext', () => {
   it('reads files and package.json from a temp dir', async () => {
-    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'vibeclean-ctx-'));
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'vibescore-ctx-'));
     try {
       await fs.writeFile(path.join(dir, 'package.json'), JSON.stringify({ name: 'x' }));
       await fs.mkdir(path.join(dir, 'src'));

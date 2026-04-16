@@ -5,7 +5,7 @@ import os from 'node:os';
 import { analyze } from '../src/index.js';
 
 async function tempDir(): Promise<string> {
-  return fs.mkdtemp(path.join(os.tmpdir(), 'vibeclean-analyze-'));
+  return fs.mkdtemp(path.join(os.tmpdir(), 'vibescore-analyze-'));
 }
 
 async function write(root: string, rel: string, content: string): Promise<void> {
