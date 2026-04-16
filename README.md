@@ -34,7 +34,7 @@ Your repo compiles on faith.
 ## Why
 
 AI pair-programming produces code faster than anyone can review it. That code
-tends to ship with the same handful of smells:
+tends to ship with the same handful of problems:
 
 - secrets hard-coded during "let me just test this"
 - `mock for now` / `sample data` / `// TODO: real implementation`
@@ -111,7 +111,7 @@ vibeclean --version
 | Pristine | 90–100 | Cleaner than most production code. |
 | Clean | 75–89 | A few loose wires, but still roadworthy. |
 | Chaotic Neutral | 60–74 | Your repo compiles on faith. |
-| Cursed | 40–59 | 'Ship now, explain never' energy. |
+| Cursed | 40–59 | Shipable, but not useful/sustainable. |
 | Biohazard | 0–39 | Consider a controlled demolition. |
 
 Scores start at 100 and subtract per issue. Representative weights:
