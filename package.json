@@ -1,5 +1,5 @@
 {
-  "name": "vibescore",
+  "name": "@marco-trotta1/vibescore",
   "version": "0.1.0",
   "description": "Lint for AI slop. Audits a repo and prints a Vibe Score from 0 to 100.",
   "keywords": [

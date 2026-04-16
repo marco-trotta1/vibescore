@@ -1,10 +1,10 @@
 # vibescore
 
-[![npm version](https://img.shields.io/npm/v/vibescore.svg?style=flat-square)](https://www.npmjs.com/package/vibescore)
-[![npm downloads](https://img.shields.io/npm/dm/vibescore.svg?style=flat-square)](https://www.npmjs.com/package/vibescore)
+[![npm version](https://img.shields.io/npm/v/@marco-trotta1/vibescore.svg?style=flat-square)](https://www.npmjs.com/package/@marco-trotta1/vibescore)
+[![npm downloads](https://img.shields.io/npm/dm/@marco-trotta1/vibescore.svg?style=flat-square)](https://www.npmjs.com/package/@marco-trotta1/vibescore)
 [![CI](https://img.shields.io/github/actions/workflow/status/marco-trotta1/vibescore/ci.yml?branch=main&style=flat-square)](https://github.com/marco-trotta1/vibescore/actions)
-[![license](https://img.shields.io/npm/l/vibescore.svg?style=flat-square)](./LICENSE)
-[![node](https://img.shields.io/node/v/vibescore.svg?style=flat-square)](https://nodejs.org)
+[![license](https://img.shields.io/npm/l/@marco-trotta1/vibescore.svg?style=flat-square)](./LICENSE)
+[![node](https://img.shields.io/node/v/@marco-trotta1/vibescore.svg?style=flat-square)](https://nodejs.org)
 
 > **Lint for AI slop.** Audits a repo and prints a **Vibe Score** from 0 to 100.
 
@@ -18,7 +18,7 @@ It's deterministic. No LLMs. Just rules, file scans, and a little bit of judgmen
 ## Quick start
 
 ```bash
-npx vibescore .
+npx @marco-trotta1/vibescore .
 ```
 
 That's it. No config file, no setup.
@@ -64,10 +64,10 @@ tends to ship with the same handful of problems:
 
 ```bash
 # one-off
-npx vibescore .
+npx @marco-trotta1/vibescore .
 
 # as a dev dependency
-npm install --save-dev vibescore
+npm install --save-dev @marco-trotta1/vibescore
 ```
 
 Requires Node.js 18+.
@@ -169,7 +169,7 @@ Scores start at 100 and subtract per issue. Representative weights:
 ## Programmatic API
 
 ```ts
-import { analyze } from 'vibescore';
+import { analyze } from '@marco-trotta1/vibescore';
 
 const report = await analyze({
   target: './my-app',
