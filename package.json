@@ -1,0 +1,61 @@
+{
+  "name": "vibeclean",
+  "version": "0.1.0",
+  "description": "Lint for AI slop. Audits a repo and prints a Vibe Score from 0 to 100.",
+  "keywords": [
+    "cli",
+    "lint",
+    "audit",
+    "code-quality",
+    "ai",
+    "vibe",
+    "repo-health",
+    "vibeclean"
+  ],
+  "license": "MIT",
+  "author": "vibeclean contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/vibeclean.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/vibeclean/issues"
+  },
+  "homepage": "https://github.com/your-org/vibeclean#readme",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "vibeclean": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fast-glob": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsup": "^8.2.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
