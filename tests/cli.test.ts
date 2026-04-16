@@ -35,6 +35,7 @@ function runCli(args: string[]): Promise<{ code: number; stdout: string; stderr:
     const child = spawn('npx', ['-y', 'tsx', CLI_ENTRY, ...args], {
       cwd: REPO_ROOT,
       env: { ...process.env, NO_COLOR: '1' },
+      shell: process.platform === 'win32',
     });
     let stdout = '';
     let stderr = '';
