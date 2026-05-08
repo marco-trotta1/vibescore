@@ -81,6 +81,7 @@ badvibes ./my-app   # audit another path
 
 badvibes --json .                        # machine-readable output
 badvibes --strict .                      # harsher scoring + non-zero exit if score < 70
+badvibes --roast .                       # roast issue descriptions
 badvibes --no-funny .                    # dry verdict
 badvibes --max-file-lines 800 .          # override large-file threshold
 badvibes --help
@@ -93,6 +94,7 @@ badvibes --version
 | --- | --- | --- |
 | `--json` | `false` | Print a structured JSON report instead of the terminal view. |
 | `--strict` | `false` | Multiplies penalties by 1.5 and returns exit code 1 when score < 70 or any critical issue exists. |
+| `--roast` | `false` | Rewrites issue descriptions as hardcoded roasts. Suppressed by `--no-funny`. |
 | `--no-funny` | | Removes the verdict line; prints a dry summary instead. |
 | `--max-file-lines <n>` | `600` | Severe threshold for file size. Warning threshold is half of this. |
 | `-v, --version` | | Print version. |

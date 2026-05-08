@@ -58,6 +58,8 @@ describe('cli smoke', () => {
 
     const { code, stdout } = await runCli(['--json', dir]);
     expect(code).toBe(0);
+    expect(stdout).not.toContain('/\\');
+    expect(stdout).not.toContain('|  _ \\');
     const payload = JSON.parse(stdout);
     expect(payload).toHaveProperty('score');
     expect(payload).toHaveProperty('band');
@@ -71,12 +73,38 @@ describe('cli smoke', () => {
     expect(code).toBe(1);
   }, 30_000);
 
+  it('prints the sword and BADVIBES banner before the human report', async () => {
+    await write('README.md', '# Rough\n');
+    await write('package.json', JSON.stringify({ name: 'rough' }));
+
+    const { code, stdout } = await runCli([dir]);
+    expect(code).toBe(0);
+
+    const swordStart = stdout.indexOf('/\\');
+    const wordmarkStart = stdout.indexOf('|  _ \\');
+    const reportStart = stdout.indexOf('BadVibes Report');
+
+    expect(swordStart).toBeGreaterThanOrEqual(0);
+    expect(wordmarkStart).toBeGreaterThan(swordStart);
+    expect(reportStart).toBeGreaterThan(wordmarkStart);
+  }, 30_000);
+
   it('--help prints usage', async () => {
     const { code, stdout } = await runCli(['--help']);
     expect(code).toBe(0);
     expect(stdout).toMatch(/badvibes/i);
     expect(stdout).toMatch(/--json/);
     expect(stdout).toMatch(/--strict/);
+    expect(stdout).toMatch(/--roast/);
     expect(stdout).toMatch(/--max-file-lines/);
+  }, 30_000);
+
+  it('--no-funny suppresses --roast', async () => {
+    await write('src/index.ts', 'const x = process.env.FOO;\n');
+
+    const { code, stdout } = await runCli(['--roast', '--no-funny', dir]);
+    expect(code).toBe(0);
+    expect(stdout).toContain('Missing .env.example');
+    expect(stdout).not.toContain('credential charades');
   }, 30_000);
 });
